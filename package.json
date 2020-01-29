@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "Parser for notes of IUT \"A\" Toulouse",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "start": "node dist/index.js",
     "watch": "DEBUG=* nodemon --ignore src/ dist/index.js",
     "watch:build": "tsc -w",
+    "install": "yarn run build",
     "test": "yarn run lint && yarn run build && yarn run jest",
     "jest": "jest",
     "lint": "tslint -p tsconfig.json",
@@ -17,12 +19,12 @@
     "jest": "^25.1.0",
     "nodemon": "^2.0.2",
     "tslint": "^6.0.0",
-    "tslint-config-airbnb": "^5.11.2",
-    "typescript": "^3.7.5"
+    "tslint-config-airbnb": "^5.11.2"
   },
   "dependencies": {
     "html-to-json-data": "^1.6.0",
-    "zombie": "^6.1.4"
+    "zombie": "^6.1.4",
+    "typescript": "^3.7.5"
   },
   "repository": "git@github.com:iverly/iut-notes-parser.git",
   "author": "iverly <iverly.dev@gmail.com>",
