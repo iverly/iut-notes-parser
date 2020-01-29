@@ -5,7 +5,7 @@
 ![last logo](https://img.shields.io/github/last-commit/iverly/iut-notes-parser)
 ![license logo](https://img.shields.io/github/license/iverly/iut-notes-parser)
 
-Parser for notes of IUT "A" Toulouse
+Parser for notes of IUT "A" Toulouse IT department
 
 ## Installation
 
