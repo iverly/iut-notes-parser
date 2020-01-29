@@ -5,15 +5,16 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "node dist/index.js",
-    "run:watch": "DEBUG=* nodemon --ignore src/ dist/index.js",
-    "test": "yarn run lint && yarn run build",
+    "watch": "DEBUG=* nodemon --ignore src/ dist/index.js",
+    "watch:build": "tsc -w",
+    "test": "yarn run lint && yarn run build && yarn run jest",
     "jest": "jest",
     "lint": "tslint -p tsconfig.json",
-    "build": "tsc",
-    "build:watch": "tsc -w"
+    "build": "tsc"
   },
   "devDependencies": {
     "@types/node": "^13.5.1",
+    "jest": "^25.1.0",
     "nodemon": "^2.0.2",
     "tslint": "^6.0.0",
     "tslint-config-airbnb": "^5.11.2",
