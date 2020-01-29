@@ -1,5 +1,10 @@
 # iut-notes-parser
 
+![build logo](https://travis-ci.com/iverly/iut-notes-parser.svg?branch=master)
+![size logo](https://img.shields.io/github/languages/code-size/iverly/iut-notes-parser)
+![last logo](https://img.shields.io/github/last-commit/iverly/iut-notes-parser)
+![license logo](https://img.shields.io/github/license/iverly/iut-notes-parser)
+
 Parser for notes of IUT "A" Toulouse
 
 ## Installation
