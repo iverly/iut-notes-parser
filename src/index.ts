@@ -23,7 +23,13 @@ interface IError {
     code: string;
 }
 
-function getData(identifiant: string, password: string): Promise<any> {
+function pop2Start(input: string): string {
+    const split = input.split(' ').reverse();
+    split.pop(); split.pop();
+    return split.reverse().join(' ');
+}
+
+export function getData(identifiant: string, password: string): Promise<any> {
     return new Promise((resolve, reject) => {
         const browser = new Browser();
         browser.visit(
@@ -48,15 +54,66 @@ function getData(identifiant: string, password: string): Promise<any> {
     });
 }
 
-export default function (identifiant: string, password: string): Promise<IData> {
-    return new Promise(async (resolve, reject: (reason?: IError) => void) => {
+export function getEusFromData(data): IEu[] {
+    const eus = [];
+    try {
+        data.definitions[0].eu.forEach((eu) => {
+            eus.push({
+                name: pop2Start(eu),
+                modules: getModulesFromEu(data, eu),
+            });
+        });
+        return eus;
+    } catch (err) {
+        return [] as unknown as IEu[];
+    }
+}
+
+export function getModulesFromEu(data: any, eu: string): IModule[] {
+    const id = eu.split(' ')[0].replace('UE', '');
+    try {
+        const modulesFilter = data.definitions[0].mat.filter(x => x.startsWith(id));
+        const modules = [];
+        modulesFilter.forEach((mod) => {
+            modules.push({
+                name: pop2Start(mod),
+                exams: getExamsFromModule(data, mod),
+            });
+        });
+        return modules;
+    } catch (err) {
+        return [] as unknown as IModule[];
+    }
+}
+
+export function getExamsFromModule(data: any, mod: string): IExam[] {
+    const id = mod.split(' ')[0];
+    try {
+        const examsFilter = data.notes.filter(x => x.name.startsWith(id));
+        const exams = [];
+        examsFilter.forEach((exam) => {
+            exams.push({
+                name: exam.name,
+                note: exam.value,
+            });
+        });
+        return exams;
+    } catch (err) {
+        return [] as unknown as IExam[];
+    }
+}
+
+export function getNotes(identifiant: string, password: string): Promise<IData> {
+    return new Promise(async (resolve, reject: (error: IError) => void) => {
         if (!identifiant) return reject({ code: 'IdentifiantNotFound' });
         if (!password) return reject({ code: 'PasswordNotFound' });
         try {
             const data = await getData(identifiant, password);
-            if (!data.notes || data.notes.lenght === 0) return reject({ code: 'Incorrect credentials' });
-            resolve(data);
+            if (!data.definitions[0].eu) return reject({ code: 'Incorrect credentials' });
+            const parse : IData = getEusFromData(data);
+            resolve(parse);
         } catch (err) {
+            console.log(err);
             return reject({ code: 'UnknowError' });
         }
     });
