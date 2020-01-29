@@ -113,7 +113,6 @@ export function getNotes(identifiant: string, password: string): Promise<IData> 
             const parse : IData = getEusFromData(data);
             resolve(parse);
         } catch (err) {
-            console.log(err);
             return reject({ code: 'UnknowError' });
         }
     });
