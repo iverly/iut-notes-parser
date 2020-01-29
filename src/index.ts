@@ -93,7 +93,7 @@ export function getExamsFromModule(data: any, mod: string): IExam[] {
         const exams = [];
         examsFilter.forEach((exam) => {
             exams.push({
-                name: exam.name,
+                name: pop2Start(exam.name),
                 note: exam.value,
             });
         });
@@ -109,6 +109,7 @@ export function getNotes(identifiant: string, password: string): Promise<IData> 
         if (!password) return reject({ code: 'PasswordNotFound' });
         try {
             const data = await getData(identifiant, password);
+            console.log(JSON.stringify(data, null, 2));
             if (!data.definitions[0].eu) return reject({ code: 'Incorrect credentials' });
             const parse : IData = getEusFromData(data);
             resolve(parse);
