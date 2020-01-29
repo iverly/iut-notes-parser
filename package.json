@@ -20,6 +20,7 @@
     "typescript": "^3.7.5"
   },
   "dependencies": {
+    "html-to-json-data": "^1.6.0",
     "zombie": "^6.1.4"
   },
   "repository": "git@github.com:iverly/iut-notes-parser.git",
