@@ -19,7 +19,9 @@
     "tslint-config-airbnb": "^5.11.2",
     "typescript": "^3.7.5"
   },
-  "dependencies": {},
+  "dependencies": {
+    "zombie": "^6.1.4"
+  },
   "repository": "git@github.com:iverly/iut-notes-parser.git",
   "author": "iverly <iverly.dev@gmail.com>",
   "license": "MIT"
