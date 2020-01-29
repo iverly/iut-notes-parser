@@ -45,11 +45,11 @@ noteParser.getNotes('username', 'password')
 
 ## Methods
 
-#### getNotes(username: string, password: string): Promise<IData>
+#### getNotes(username: string, password: string): Promise\<IData\>
 
 Return an Array containing all EU and for each EU, return modules with their exams.
 
-#### getData(username: string, password: string): Promise<any>
+#### getData(username: string, password: string): Promise\<any\>
 
 Return brut data from IUT's website.
 
